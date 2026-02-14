@@ -28,11 +28,17 @@
 - Rules:
   - Required execution command: `npm run test:unit`.
   - `npm test` must execute unit tests only.
+  - `npm run test:integration` may exist for future use but must not be executed in this iteration.
   - Integration and E2E tests must not be modified.
   - Integration and E2E suites must not be executed in this iteration.
 - Expected Outcomes:
   - Unit test suite passes.
   - No integration/E2E activity occurs.
+
+## Enforcement Notes (T005)
+- Any code review for this feature must reject changes under `__tests__/integration` and `__tests__/e2e`.
+- Any CI/local execution log attached to this feature must include `npm run test:unit` output.
+- If `npm test` executes suites outside `__tests__/unit`, the feature is considered non-compliant until corrected.
 
 ## Contract 4: Dependency Contract
 - Intent: Prevent unnecessary stack changes.

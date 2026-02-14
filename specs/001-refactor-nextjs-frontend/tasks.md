@@ -11,8 +11,8 @@
 
 **Purpose**: Establish repository-level test command and workflow constraints required by all stories.
 
-- [ ] T001 Update unit-only npm scripts contract in package.json
-- [ ] T002 Add/confirm unit-only Jest command guidance in specs/001-refactor-nextjs-frontend/quickstart.md
+- [X] T001 Update unit-only npm scripts contract in package.json
+- [X] T002 Add/confirm unit-only Jest command guidance in specs/001-refactor-nextjs-frontend/quickstart.md
 
 ---
 
@@ -22,9 +22,9 @@
 
 **⚠️ CRITICAL**: No user story implementation starts before this phase is complete.
 
-- [ ] T003 [P] Create frontend module boundary inventory in specs/001-refactor-nextjs-frontend/research.md
-- [ ] T004 [P] Define compliance checklist entries for touched modules in specs/001-refactor-nextjs-frontend/data-model.md
-- [ ] T005 Establish test-scope enforcement notes in specs/001-refactor-nextjs-frontend/contracts/component-contracts.md
+- [X] T003 [P] Create frontend module boundary inventory in specs/001-refactor-nextjs-frontend/research.md
+- [X] T004 [P] Define compliance checklist entries for touched modules in specs/001-refactor-nextjs-frontend/data-model.md
+- [X] T005 Establish test-scope enforcement notes in specs/001-refactor-nextjs-frontend/contracts/component-contracts.md
 
 **Checkpoint**: Foundation ready — user stories can proceed.
 
@@ -38,18 +38,18 @@
 
 ### Tests for User Story 1 (Unit Only)
 
-- [ ] T006 [P] [US1] Update component render behavior tests in __tests__/unit/course-card.test.tsx
-- [ ] T007 [P] [US1] Update list item behavior tests in __tests__/unit/course-list-item.test.tsx
-- [ ] T008 [P] [US1] Update form interaction tests in __tests__/unit/course-form-teacher-input.test.tsx
+- [X] T006 [P] [US1] Update component render behavior tests in __tests__/unit/course-card.test.tsx
+- [X] T007 [P] [US1] Update list item behavior tests in __tests__/unit/course-list-item.test.tsx
+- [X] T008 [P] [US1] Update form interaction tests in __tests__/unit/course-form-teacher-input.test.tsx
 
 ### Implementation for User Story 1
 
-- [ ] T009 [US1] Refactor route composition boundaries in app/page.tsx
-- [ ] T010 [US1] Refactor card display responsibility boundaries in components/course-card.tsx
-- [ ] T011 [US1] Refactor list rendering boundaries in components/course-management/course-list.tsx
-- [ ] T012 [US1] Refactor list item boundary and props flow in components/course-management/course-list-item.tsx
-- [ ] T013 [US1] Refactor interactive form boundary in components/course-management/course-form.tsx
-- [ ] T014 [US1] Refactor modal orchestration boundary in components/course-management/course-management-modal.tsx
+- [X] T009 [US1] Refactor route composition boundaries in app/page.tsx
+- [X] T010 [US1] Refactor card display responsibility boundaries in components/course-card.tsx
+- [X] T011 [US1] Refactor list rendering boundaries in components/course-management/course-list.tsx
+- [X] T012 [US1] Refactor list item boundary and props flow in components/course-management/course-list-item.tsx
+- [X] T013 [US1] Refactor interactive form boundary in components/course-management/course-form.tsx
+- [X] T014 [US1] Refactor modal orchestration boundary in components/course-management/course-management-modal.tsx
 
 **Checkpoint**: User Story 1 is independently functional and unit-testable.
 
@@ -63,13 +63,13 @@
 
 ### Tests for User Story 2 (Unit Only)
 
-- [ ] T015 [P] [US2] Add unit command scope verification test notes in specs/001-refactor-nextjs-frontend/quickstart.md
+- [X] T015 [P] [US2] Add unit command scope verification test notes in specs/001-refactor-nextjs-frontend/quickstart.md
 
 ### Implementation for User Story 2
 
-- [ ] T016 [US2] Implement `test:unit` script and unit-only default test script in package.json
-- [ ] T017 [US2] Ensure dedicated non-default integration command remains documented in package.json
-- [ ] T018 [US2] Update test scope contract expectations in specs/001-refactor-nextjs-frontend/contracts/component-contracts.md
+- [X] T016 [US2] Implement `test:unit` script and unit-only default test script in package.json
+- [X] T017 [US2] Ensure dedicated non-default integration command remains documented in package.json
+- [X] T018 [US2] Update test scope contract expectations in specs/001-refactor-nextjs-frontend/contracts/component-contracts.md
 
 **Checkpoint**: User Story 2 is independently verifiable via unit-only command behavior.
 
@@ -83,16 +83,16 @@
 
 ### Tests for User Story 3 (Unit Only)
 
-- [ ] T019 [P] [US3] Update warning badge regression tests in __tests__/unit/course-form-warning-badge.test.tsx
-- [ ] T020 [P] [US3] Update teacher validation regression tests in __tests__/unit/teacher-validation.test.ts
-- [ ] T021 [P] [US3] Update course-form regression tests in __tests__/unit/course-form-teacher-input.test.tsx
+- [X] T019 [P] [US3] Update warning badge regression tests in __tests__/unit/course-form-warning-badge.test.tsx
+- [X] T020 [P] [US3] Update teacher validation regression tests in __tests__/unit/teacher-validation.test.ts
+- [X] T021 [P] [US3] Update course-form regression tests in __tests__/unit/course-form-teacher-input.test.tsx
 
 ### Implementation for User Story 3
 
-- [ ] T022 [US3] Refactor course domain defaults and invariants in data/courses.ts
-- [ ] T023 [US3] Refactor service behavior-preserving logic in data/services/course-service.ts
-- [ ] T024 [US3] Refactor validation behavior-preserving logic in data/utils/validation.ts
-- [ ] T025 [US3] Refactor delete flow behavior surface in components/course-management/delete-confirmation.tsx
+- [X] T022 [US3] Refactor course domain defaults and invariants in data/courses.ts
+- [X] T023 [US3] Refactor service behavior-preserving logic in data/services/course-service.ts
+- [X] T024 [US3] Refactor validation behavior-preserving logic in data/utils/validation.ts
+- [X] T025 [US3] Refactor delete flow behavior surface in components/course-management/delete-confirmation.tsx
 
 **Checkpoint**: User Story 3 is independently functional with preserved behavior and passing unit tests.
 
@@ -102,9 +102,9 @@
 
 **Purpose**: Final consistency, documentation, and validation across all stories.
 
-- [ ] T026 [P] Document final best-practice compliance outcomes in specs/001-refactor-nextjs-frontend/research.md
-- [ ] T027 Validate completion criteria and scope constraints in specs/001-refactor-nextjs-frontend/checklists/requirements.md
-- [ ] T028 Record final unit-only validation steps/results in specs/001-refactor-nextjs-frontend/quickstart.md
+- [X] T026 [P] Document final best-practice compliance outcomes in specs/001-refactor-nextjs-frontend/research.md
+- [X] T027 Validate completion criteria and scope constraints in specs/001-refactor-nextjs-frontend/checklists/requirements.md
+- [X] T028 Record final unit-only validation steps/results in specs/001-refactor-nextjs-frontend/quickstart.md
 
 ---
 

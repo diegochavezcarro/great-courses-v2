@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo } from 'react';
 import { Course, CourseLevel } from '@/data/courses';
 import { Search } from '@/components/ui/search';
 import { Select } from '@/components/ui/input';
@@ -32,28 +33,33 @@ export function CourseList({
   onDeleteCourse,
   onAddNew,
   isLoading = false,
-}: CourseListProps) {
-  // Filter courses based on search and filters
-  const filteredCourses = courses.filter((course) => {
-    const matchesSearch =
-      !searchQuery ||
-      course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      course.teacher.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      course.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      course.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+}: Readonly<CourseListProps>) {
+  const normalizedSearchQuery = searchQuery.trim().toLowerCase();
 
-    const matchesCategory = !categoryFilter || course.category === categoryFilter;
-    const matchesLevel = !levelFilter || course.level === levelFilter;
+  const filteredCourses = useMemo(() => {
+    return courses.filter((course) => {
+      const matchesSearch =
+        !normalizedSearchQuery ||
+        course.title.toLowerCase().includes(normalizedSearchQuery) ||
+        course.teacher.toLowerCase().includes(normalizedSearchQuery) ||
+        course.description.toLowerCase().includes(normalizedSearchQuery) ||
+        course.tags.some((tag) => tag.toLowerCase().includes(normalizedSearchQuery));
 
-    return matchesSearch && matchesCategory && matchesLevel;
-  });
+      const matchesCategory = !categoryFilter || course.category === categoryFilter;
+      const matchesLevel = !levelFilter || course.level === levelFilter;
 
-  // Get unique categories for filter
-  const availableCategories = Array.from(new Set(courses.map((c) => c.category)));
-  const categoryOptions = [
-    { value: '', label: 'All Categories' },
-    ...availableCategories.map((cat) => ({ value: cat, label: cat })),
-  ];
+      return matchesSearch && matchesCategory && matchesLevel;
+    });
+  }, [courses, normalizedSearchQuery, categoryFilter, levelFilter]);
+
+  const categoryOptions = useMemo(() => {
+    const availableCategories = Array.from(new Set(courses.map((course) => course.category)));
+
+    return [
+      { value: '', label: 'All Categories' },
+      ...availableCategories.map((category) => ({ value: category, label: category })),
+    ];
+  }, [courses]);
 
   const levelOptions = [
     { value: '', label: 'All Levels' },
@@ -61,6 +67,31 @@ export function CourseList({
     { value: 'Intermedio', label: 'Intermedio' },
     { value: 'Avanzado', label: 'Avanzado' },
   ];
+
+  const hasActiveFilters = Boolean(searchQuery || categoryFilter || levelFilter);
+
+  const emptyState = (
+    <div className="text-center py-12">
+      <p className="text-gray-500 mb-4">No courses found</p>
+      {hasActiveFilters ? (
+        <Button
+          onClick={() => {
+            onSearchChange('');
+            onCategoryFilterChange('');
+            onLevelFilterChange('');
+          }}
+          variant="secondary"
+          size="sm"
+        >
+          Clear Filters
+        </Button>
+      ) : (
+        <Button onClick={onAddNew} variant="primary" size="sm">
+          Create Your First Course
+        </Button>
+      )}
+    </div>
+  );
 
   return (
     <div className="p-6">
@@ -94,30 +125,13 @@ export function CourseList({
         </div>
       </div>
 
-      {isLoading ? (
+      {isLoading && (
         <div className="text-center py-12 text-gray-500">Loading courses...</div>
-      ) : filteredCourses.length === 0 ? (
-        <div className="text-center py-12">
-          <p className="text-gray-500 mb-4">No courses found</p>
-          {searchQuery || categoryFilter || levelFilter ? (
-            <Button
-              onClick={() => {
-                onSearchChange('');
-                onCategoryFilterChange('');
-                onLevelFilterChange('');
-              }}
-              variant="secondary"
-              size="sm"
-            >
-              Clear Filters
-            </Button>
-          ) : (
-            <Button onClick={onAddNew} variant="primary" size="sm">
-              Create Your First Course
-            </Button>
-          )}
-        </div>
-      ) : (
+      )}
+
+      {!isLoading && filteredCourses.length === 0 && emptyState}
+
+      {!isLoading && filteredCourses.length > 0 && (
         <div className="space-y-3">
           {filteredCourses.map((course) => (
             <CourseListItem

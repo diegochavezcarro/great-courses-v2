@@ -45,3 +45,10 @@
 - Validated against all checklist items on first pass.
 - Testing scope is explicitly constrained to unit tests only for this iteration.
 - Integration and E2E modification/execution are explicitly out of scope.
+
+## Implementation Validation (T027)
+
+- Completed implementation follows `skills/frontend/nextjs-best-practices.md` boundary guidance.
+- `npm run test:unit` executed and passed.
+- `npm test` executes unit tests only (delegates to `test:unit`).
+- No integration/E2E tests were modified or executed in this iteration.

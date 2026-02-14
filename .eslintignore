@@ -8,3 +8,4 @@ coverage
 *.config.ts
 playwright.config.ts
 jest.config.js
+*.min.js

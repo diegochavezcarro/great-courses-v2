@@ -57,6 +57,9 @@ export function DeleteConfirmation({
           <h4 className="font-semibold text-gray-900 mb-2">{course.title}</h4>
           <div className="space-y-1 text-sm text-gray-600">
             <p>
+              <span className="font-medium">Teacher:</span> {course.teacher}
+            </p>
+            <p>
               <span className="font-medium">Category:</span> {course.category}
             </p>
             <p>

@@ -138,6 +138,28 @@ describe('CourseForm - Teacher Input Field', () => {
 
       expect(teacherInput).toHaveValue("Dr. O'Connor-Smith");
     });
+
+    it('should keep teacher input value when pressing Enter in tags input', async () => {
+      const user = userEvent.setup();
+
+      render(
+        <CourseForm
+          mode="create"
+          onSubmit={mockOnSubmit}
+          onCancel={mockOnCancel}
+          existingCourses={existingCourses}
+        />
+      );
+
+      const teacherInput = screen.getByPlaceholderText(/dr\. sarah johnson/i);
+      await user.type(teacherInput, 'Dr. Sarah Johnson');
+
+      const tagInput = screen.getAllByPlaceholderText(/e\.g\., next\.js/i)[1];
+      await user.type(tagInput, 'TypeScript{enter}');
+
+      expect(teacherInput).toHaveValue('Dr. Sarah Johnson');
+      expect(screen.getByText('TypeScript')).toBeInTheDocument();
+    });
   });
 
   describe('Edit Mode', () => {

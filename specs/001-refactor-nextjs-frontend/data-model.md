@@ -43,3 +43,18 @@
   - Transition to `verified` requires passing associated `BestPracticeComplianceCheck` entries and unit-test validation.
 - `TestScopePolicy.status`: `defined -> enforced -> validated`
   - Transition to `validated` requires successful execution of unit-only commands and no integration/E2E execution.
+
+## Compliance Checklist Entries (T004)
+
+| targetPath | ruleCategory | expectedResult |
+|------------|--------------|----------------|
+| `app/page.tsx` | `server-client-boundary` | `pass` |
+| `components/course-card.tsx` | `component-organization` | `pass` |
+| `components/course-management/course-list.tsx` | `component-organization` | `pass` |
+| `components/course-management/course-form.tsx` | `server-client-boundary` | `pass` |
+| `components/course-management/course-management-modal.tsx` | `component-organization` | `pass` |
+| `data/services/course-service.ts` | `performance-constraint` | `pass` |
+| `data/utils/validation.ts` | `component-organization` | `pass` |
+| `package.json` | `app-router-pattern` | `pass-with-justification` |
+
+Justification for `package.json`: this is a process-control file used to enforce testing scope and does not directly map to UI boundary rules.
