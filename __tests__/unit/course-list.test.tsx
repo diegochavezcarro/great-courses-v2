@@ -81,7 +81,6 @@ describe('CourseList', () => {
     expect(props.onSearchChange).toHaveBeenLastCalledWith('Next');
   });
 
-
   it('muestra empty state sin filtros y permite crear primer curso', async () => {
     const user = userEvent.setup();
     const props = buildProps({ courses: [] });
