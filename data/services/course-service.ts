@@ -9,7 +9,7 @@ export interface SearchFilters {
 
 export class CourseService {
   private courses: Course[];
-  private onUpdate: (courses: Course[]) => void;
+  private readonly onUpdate: (courses: Course[]) => void;
 
   constructor(courses: Course[], onUpdate: (courses: Course[]) => void) {
     this.courses = courses;
@@ -63,17 +63,22 @@ export class CourseService {
       return null;
     }
 
+    const currentCourse = this.courses[index];
     const updatedCourse: Course = {
-      ...this.courses[index],
-      ...(updates.title && { title: updates.title }),
-      ...(updates.teacher && { teacher: updates.teacher }),
-      ...(updates.category && { category: updates.category }),
-      ...(updates.level && { level: updates.level as Course['level'] }),
-      ...(updates.lessons && { lessons: Number(updates.lessons) }),
-      ...(updates.duration && { duration: updates.duration }),
-      ...(updates.rating !== undefined && { rating: Number(updates.rating) }),
-      ...(updates.description && { description: updates.description }),
-      ...(updates.tags && { tags: updates.tags }),
+      ...currentCourse,
+      title: updates.title ?? currentCourse.title,
+      teacher: updates.teacher ?? currentCourse.teacher,
+      category: updates.category ?? currentCourse.category,
+      level: (updates.level as Course['level'] | undefined) ?? currentCourse.level,
+      lessons: updates.lessons !== undefined && updates.lessons !== ''
+        ? Number(updates.lessons)
+        : currentCourse.lessons,
+      duration: updates.duration ?? currentCourse.duration,
+      rating: updates.rating !== undefined && updates.rating !== ''
+        ? Number(updates.rating)
+        : currentCourse.rating,
+      description: updates.description ?? currentCourse.description,
+      tags: updates.tags ?? currentCourse.tags,
     };
 
     this.courses = [

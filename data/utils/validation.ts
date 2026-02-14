@@ -24,17 +24,22 @@ export function validateCourseForm(
 ): FormValidationResult {
   const errors: Partial<Record<keyof CourseFormData, string>> = {};
   const warnings: string[] = [];
+  const title = (data.title ?? '').toString().trim();
+  const teacher = (data.teacher ?? '').toString().trim();
+  const category = (data.category ?? '').toString().trim();
+  const duration = (data.duration ?? '').toString().trim();
+  const description = (data.description ?? '').toString().trim();
 
   // Title validation
-  if (!data.title.trim()) {
+  if (!title) {
     errors.title = 'Title is required';
-  } else if (data.title.length < 3) {
+  } else if (title.length < 3) {
     errors.title = 'Title must be at least 3 characters';
-  } else if (data.title.length > 120) {
+  } else if (title.length > 120) {
     errors.title = 'Title must be 120 characters or less';
   } else if (existingCourses) {
     const duplicateTitle = existingCourses.some(
-      (course) => course.title.toLowerCase() === data.title.toLowerCase()
+      (course) => course.title.toLowerCase() === title.toLowerCase()
     );
     if (duplicateTitle) {
       warnings.push('A course with this title already exists');
@@ -42,20 +47,20 @@ export function validateCourseForm(
   }
 
   // Teacher validation
-  if (!data.teacher || !data.teacher.trim()) {
+  if (!teacher) {
     errors.teacher = 'Teacher name is required';
-  } else if (data.teacher.trim().length < 2) {
+  } else if (teacher.length < 2) {
     errors.teacher = 'Teacher name must be at least 2 characters';
-  } else if (data.teacher.trim().length > 100) {
+  } else if (teacher.length > 100) {
     errors.teacher = 'Teacher name must not exceed 100 characters';
   }
 
   // Category validation
-  if (!data.category.trim()) {
+  if (!category) {
     errors.category = 'Category is required';
-  } else if (data.category.length < 2) {
+  } else if (category.length < 2) {
     errors.category = 'Category must be at least 2 characters';
-  } else if (data.category.length > 50) {
+  } else if (category.length > 50) {
     errors.category = 'Category must be 50 characters or less';
   }
 
@@ -76,7 +81,7 @@ export function validateCourseForm(
   }
 
   // Duration validation
-  if (!data.duration.trim()) {
+  if (!duration) {
     errors.duration = 'Duration is required';
   }
 
@@ -92,11 +97,11 @@ export function validateCourseForm(
   }
 
   // Description validation
-  if (!data.description.trim()) {
+  if (!description) {
     errors.description = 'Description is required';
-  } else if (data.description.length < 10) {
+  } else if (description.length < 10) {
     errors.description = 'Description must be at least 10 characters';
-  } else if (data.description.length > 1000) {
+  } else if (description.length > 1000) {
     errors.description = 'Description must be 1000 characters or less';
   }
 
@@ -116,8 +121,8 @@ export function generateCourseId(title: string): string {
   const timestamp = Date.now();
   const slug = title
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/-+/g, '-')
-    .replace(/^-|-$/g, '');
+    .replaceAll(/[^a-z0-9]+/g, '-')
+    .replaceAll(/-+/g, '-')
+    .replaceAll(/(^-|-$)/g, '');
   return `${slug}-${timestamp}`;
 }

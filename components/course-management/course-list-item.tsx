@@ -30,7 +30,7 @@ export function CourseListItem({ course, onEdit, onDelete }: CourseListItemProps
             </div>
           </div>
 
-          <div className="flex items-center gap-1 text-sm text-gray-600 mb-2">
+          <p className="mb-2 flex items-center gap-1 text-sm text-gray-600" aria-label="Teacher">
             <svg
               className="w-4 h-4"
               viewBox="0 0 24 24"
@@ -43,7 +43,7 @@ export function CourseListItem({ course, onEdit, onDelete }: CourseListItemProps
               <circle cx="12" cy="7" r="4" />
             </svg>
             <span>{course.teacher}</span>
-          </div>
+          </p>
 
           <div className="flex flex-wrap items-center gap-3 mb-2 text-sm text-gray-600">
             <span className="inline-flex items-center gap-1">

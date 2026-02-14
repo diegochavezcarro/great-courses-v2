@@ -15,10 +15,10 @@ export function CourseCard({ course }: CourseCardProps) {
       </div>
 
       <h3 className="mb-2 text-xl font-semibold text-slate-900">{course.title}</h3>
-      
-      <div className="flex items-center gap-1 text-sm text-slate-600 mb-3">
+
+      <p className="mb-3 flex items-center gap-1 text-sm text-slate-600" aria-label="Teacher">
         <svg
-          className="w-4 h-4"
+          className="h-4 w-4"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -29,8 +29,8 @@ export function CourseCard({ course }: CourseCardProps) {
           <circle cx="12" cy="7" r="4" />
         </svg>
         <span>{course.teacher}</span>
-      </div>
-      
+      </p>
+
       <p className="mb-5 text-sm leading-relaxed text-slate-600">{course.description}</p>
 
       <ul className="mb-6 flex flex-wrap gap-2">

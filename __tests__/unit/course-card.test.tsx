@@ -40,7 +40,7 @@ describe('CourseCard - Teacher Display', () => {
     
     // Verify teacher appears after title in DOM order
     const titleElement = title.parentElement;
-    const teacherElement = teacher.closest('div');
+    const teacherElement = teacher.closest('p');
     
     // Use DOM position check - teacher div should follow title element
     const result = titleElement?.compareDocumentPosition(teacherElement!);
@@ -51,11 +51,12 @@ describe('CourseCard - Teacher Display', () => {
   it('should apply correct styling to teacher display', () => {
     const { container } = render(<CourseCard course={mockCourse} />);
     
-    const teacherContainer = screen.getByText('Dr. Sarah Johnson').closest('div');
+    const teacherContainer = screen.getByText('Dr. Sarah Johnson').closest('p');
     
     // Verify flex layout classes
     expect(teacherContainer).toHaveClass('flex', 'items-center', 'gap-1');
     expect(teacherContainer).toHaveClass('text-sm', 'text-slate-600');
+    expect(teacherContainer).toHaveAttribute('aria-label', 'Teacher');
   });
 
   it('should render teacher with different names correctly', () => {

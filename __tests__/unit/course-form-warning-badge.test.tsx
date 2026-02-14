@@ -70,6 +70,34 @@ describe('CourseForm - Warning Badge for Missing Teacher', () => {
       const warningBadge = screen.queryByText(/requires a teacher assignment/i);
       expect(warningBadge).not.toBeInTheDocument();
     });
+
+    it('should NOT show warning badge when teacher contains trimmed non-empty value', () => {
+      const courseWithSpacedTeacher: Course = {
+        id: 'test-2',
+        title: 'Test Course 2',
+        teacher: '  Prof. Michael Chen  ',
+        category: 'Programming',
+        level: 'Intermedio',
+        lessons: 12,
+        duration: '6 horas',
+        rating: 4.2,
+        description: 'Another test description',
+        tags: [],
+      };
+
+      render(
+        <CourseForm
+          mode="edit"
+          initialData={courseWithSpacedTeacher}
+          onSubmit={mockOnSubmit}
+          onCancel={mockOnCancel}
+          existingCourses={existingCourses}
+        />
+      );
+
+      const warningBadge = screen.queryByText(/requires a teacher assignment/i);
+      expect(warningBadge).not.toBeInTheDocument();
+    });
   });
 
   describe('Edit Mode - Without Teacher', () => {

@@ -13,7 +13,7 @@ export type Course = {
   tags: string[];
 };
 
-export const featuredCourses: Course[] = [
+const featuredCoursesSeed: Course[] = [
   {
     id: "nextjs-bootcamp",
     title: "Next.js Bootcamp 2026",
@@ -54,3 +54,8 @@ export const featuredCourses: Course[] = [
     tags: ["IA", "Automatización", "Flujos"],
   },
 ];
+
+export const featuredCourses: Course[] = featuredCoursesSeed.map((course) => ({
+  ...course,
+  tags: [...course.tags],
+}));

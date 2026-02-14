@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { Course, CourseLevel } from '@/data/courses';
 import { CourseFormData } from '@/data/utils/validation';
 import { CourseService } from '@/data/services/course-service';
@@ -23,7 +23,7 @@ export function CourseManagementModal({
   onClose,
   courses,
   onCoursesUpdate,
-}: CourseManagementModalProps) {
+}: Readonly<CourseManagementModalProps>) {
   const [currentView, setCurrentView] = useState<ModalView>('list');
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -32,8 +32,10 @@ export function CourseManagementModal({
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Create service instance
-  const courseService = new CourseService(courses, onCoursesUpdate);
+  const courseService = useMemo(
+    () => new CourseService(courses, onCoursesUpdate),
+    [courses, onCoursesUpdate]
+  );
 
   const handleClose = useCallback(() => {
     setCurrentView('list');

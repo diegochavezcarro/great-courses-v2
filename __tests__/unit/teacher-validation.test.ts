@@ -65,6 +65,13 @@ describe('Teacher Validation', () => {
       expect(result.isValid).toBe(false);
       expect(result.errors.teacher).toBe('Teacher name must be at least 2 characters');
     });
+
+    it('should pass when trimmed teacher value has minimum valid length', () => {
+      const formData = { ...validFormData, teacher: '  AB  ' };
+      const result = validateCourseForm(formData, existingCourses);
+
+      expect(result.errors.teacher).toBeUndefined();
+    });
   });
 
   describe('Maximum Length Validation', () => {

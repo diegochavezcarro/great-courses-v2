@@ -50,7 +50,7 @@ describe('CourseListItem - Teacher Display', () => {
     
     // Verify order: title -> teacher -> category/metadata
     const titleElement = title.parentElement;
-    const teacherElement = teacher.closest('div');
+    const teacherElement = teacher.closest('p');
     const categoryElement = category.closest('span');
     
     expect(titleElement?.compareDocumentPosition(teacherElement!)).toBe(
@@ -64,11 +64,12 @@ describe('CourseListItem - Teacher Display', () => {
   it('should apply correct styling to teacher display', () => {
     const { container } = render(<CourseListItem course={mockCourse} {...mockHandlers} />);
     
-    const teacherContainer = screen.getByText('Dr. Emily Williams').closest('div');
+    const teacherContainer = screen.getByText('Dr. Emily Williams').closest('p');
     
     // Verify flex layout and text styling
     expect(teacherContainer).toHaveClass('flex', 'items-center', 'gap-1');
     expect(teacherContainer).toHaveClass('text-sm', 'text-gray-600');
+    expect(teacherContainer).toHaveAttribute('aria-label', 'Teacher');
   });
 
   it('should render teacher with different names correctly', () => {
