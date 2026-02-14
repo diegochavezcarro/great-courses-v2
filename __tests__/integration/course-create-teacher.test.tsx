@@ -21,7 +21,7 @@ describe('Integration: Course Creation with Teacher', () => {
 
     // Step 3: Fill all required fields including teacher
     await user.type(screen.getByLabelText(/title/i), 'Integration Test Course');
-    await user.type(screen.getByLabelText(/teacher/i), 'Dr. Integration Test');
+    await user.type(screen.getByPlaceholderText(/dr\. sarah johnson/i), 'Dr. Integration Test');
     await user.type(screen.getByLabelText(/category/i), 'Testing');
     await user.selectOptions(screen.getByLabelText(/level/i), 'Avanzado');
     await user.type(screen.getByLabelText(/number of lessons/i), '25');
@@ -61,7 +61,7 @@ describe('Integration: Course Creation with Teacher', () => {
     await user.type(screen.getByLabelText(/category/i), 'Test');
     
     // Blur teacher field without entering value
-    const teacherInput = screen.getByLabelText(/teacher/i);
+    const teacherInput = screen.getByPlaceholderText(/dr\. sarah johnson/i);
     teacherInput.focus();
     teacherInput.blur();
 
@@ -83,7 +83,7 @@ describe('Integration: Course Creation with Teacher', () => {
     await user.click(await screen.findByRole('button', { name: /add new course/i }));
 
     // Test minimum length (1 character - should fail)
-    const teacherInput = screen.getByLabelText(/teacher/i);
+    const teacherInput = screen.getByPlaceholderText(/dr\. sarah johnson/i);
     await user.type(teacherInput, 'A');
     teacherInput.blur();
 

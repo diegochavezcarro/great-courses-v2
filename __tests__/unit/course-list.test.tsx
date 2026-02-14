@@ -81,6 +81,20 @@ describe('CourseList', () => {
     expect(props.onSearchChange).toHaveBeenLastCalledWith('Next');
   });
 
+
+  it('dispara cambios de filtros de categoría y nivel desde los selects', () => {
+    const props = buildProps();
+    render(<CourseList {...props} />);
+
+    const [categorySelect, levelSelect] = screen.getAllByRole('combobox');
+
+    fireEvent.change(categorySelect, { target: { value: 'UI/UX' } });
+    fireEvent.change(levelSelect, { target: { value: 'Principiante' } });
+
+    expect(props.onCategoryFilterChange).toHaveBeenCalledWith('UI/UX');
+    expect(props.onLevelFilterChange).toHaveBeenCalledWith('Principiante');
+  });
+
   it('muestra empty state sin filtros y permite crear primer curso', async () => {
     const user = userEvent.setup();
     const props = buildProps({ courses: [] });

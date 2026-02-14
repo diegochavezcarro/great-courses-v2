@@ -25,7 +25,6 @@ describe('Integration: Course Migration - Teacher Assignment', () => {
       lessons: 20,
       duration: '10 horas',
       rating: 4.5,
-      image: '/images/course.jpg',
       description: 'Course from before teacher field was required',
       tags: ['legacy'],
     };
@@ -36,6 +35,7 @@ describe('Integration: Course Migration - Teacher Assignment', () => {
         initialData={legacyCourse}
         onSubmit={mockOnSubmit}
         onCancel={mockOnCancel}
+        existingCourses={[]}
       />
     );
 
@@ -55,7 +55,6 @@ describe('Integration: Course Migration - Teacher Assignment', () => {
       lessons: 20,
       duration: '10 horas',
       rating: 4.5,
-      image: '/images/course.jpg',
       description: 'Course from before teacher field was required',
       tags: [],
     };
@@ -66,6 +65,7 @@ describe('Integration: Course Migration - Teacher Assignment', () => {
         initialData={legacyCourse}
         onSubmit={mockOnSubmit}
         onCancel={mockOnCancel}
+        existingCourses={[]}
       />
     );
 
@@ -91,7 +91,6 @@ describe('Integration: Course Migration - Teacher Assignment', () => {
       lessons: 20,
       duration: '10 horas',
       rating: 4.5,
-      image: '/images/course.jpg',
       description: 'Course from before teacher field was required',
       tags: [],
     };
@@ -102,6 +101,7 @@ describe('Integration: Course Migration - Teacher Assignment', () => {
         initialData={legacyCourse}
         onSubmit={mockOnSubmit}
         onCancel={mockOnCancel}
+        existingCourses={[]}
       />
     );
 
@@ -109,7 +109,7 @@ describe('Integration: Course Migration - Teacher Assignment', () => {
     expect(screen.getByText(/requires a teacher assignment/i)).toBeInTheDocument();
 
     // Add teacher to the field
-    const teacherInput = screen.getByLabelText(/teacher/i) as HTMLInputElement;
+    const teacherInput = screen.getByPlaceholderText(/dr\. sarah johnson/i) as HTMLInputElement;
     await user.type(teacherInput, 'Dr. Newly Assigned');
 
     // Warning should still be shown (only removed after save)
@@ -134,7 +134,6 @@ describe('Integration: Course Migration - Teacher Assignment', () => {
       lessons: 20,
       duration: '10 horas',
       rating: 4.5,
-      image: '/images/course.jpg',
       description: 'Course with teacher already assigned',
       tags: [],
     };
@@ -145,6 +144,7 @@ describe('Integration: Course Migration - Teacher Assignment', () => {
         initialData={normalCourse}
         onSubmit={mockOnSubmit}
         onCancel={mockOnCancel}
+        existingCourses={[]}
       />
     );
 

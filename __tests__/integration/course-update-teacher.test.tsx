@@ -19,7 +19,7 @@ describe('Integration: Course Update with Teacher', () => {
     await user.click(editButtons[0]);
 
     // Verify teacher field is pre-populated
-    const teacherInput = await screen.findByLabelText(/teacher/i);
+    const teacherInput = await screen.findByPlaceholderText(/dr\. sarah johnson/i);
     expect(teacherInput).toHaveValue('Dr. Sarah Johnson');
 
     // Update teacher name
@@ -47,7 +47,7 @@ describe('Integration: Course Update with Teacher', () => {
     await user.click(editButtons[1]);
 
     // Get original teacher value from input
-    const teacherInput = await screen.findByLabelText(/teacher/i) as HTMLInputElement;
+    const teacherInput = await screen.findByPlaceholderText(/dr\. sarah johnson/i) as HTMLInputElement;
     const originalTeacher = teacherInput.value;
 
     // Update only the title
@@ -75,7 +75,7 @@ describe('Integration: Course Update with Teacher', () => {
     await user.click(editButtons[0]);
 
     // Try to clear teacher (should fail validation)
-    const teacherInput = await screen.findByLabelText(/teacher/i);
+    const teacherInput = await screen.findByPlaceholderText(/dr\. sarah johnson/i);
     await user.clear(teacherInput);
 
     await waitFor(() => {
