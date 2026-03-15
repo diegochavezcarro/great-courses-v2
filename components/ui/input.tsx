@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, forwardRef, useId } from 'react';
+import { InputHTMLAttributes, forwardRef, useId } from "react";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -7,14 +7,20 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, error, helperText, className = '', id: providedId, ...props }, ref) => {
+  (
+    { label, error, helperText, className = "", id: providedId, ...props },
+    ref,
+  ) => {
     const generatedId = useId();
     const id = providedId || generatedId;
 
     return (
       <div className="w-full">
         {label && (
-          <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-1">
+          <label
+            htmlFor={id}
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
             {label}
             {props.required && <span className="text-red-500 ml-1">*</span>}
           </label>
@@ -23,7 +29,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           id={id}
           className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 transition ${
-            error ? 'border-red-500 focus:ring-red-500' : 'border-gray-300'
+            error ? "border-red-500 focus:ring-red-500" : "border-gray-300"
           } ${className}`}
           {...props}
         />
@@ -33,10 +39,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
-Input.displayName = 'Input';
+Input.displayName = "Input";
 
 interface TextareaProps extends InputHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
@@ -46,14 +52,28 @@ interface TextareaProps extends InputHTMLAttributes<HTMLTextAreaElement> {
 }
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ label, error, helperText, className = '', rows = 4, id: providedId, ...props }, ref) => {
+  (
+    {
+      label,
+      error,
+      helperText,
+      className = "",
+      rows = 4,
+      id: providedId,
+      ...props
+    },
+    ref,
+  ) => {
     const generatedId = useId();
     const id = providedId || generatedId;
 
     return (
       <div className="w-full">
         {label && (
-          <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-1">
+          <label
+            htmlFor={id}
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
             {label}
             {props.required && <span className="text-red-500 ml-1">*</span>}
           </label>
@@ -63,7 +83,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           id={id}
           rows={rows}
           className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 transition resize-vertical ${
-            error ? 'border-red-500 focus:ring-red-500' : 'border-gray-300'
+            error ? "border-red-500 focus:ring-red-500" : "border-gray-300"
           } ${className}`}
           {...props}
         />
@@ -73,10 +93,10 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
-Textarea.displayName = 'Textarea';
+Textarea.displayName = "Textarea";
 
 interface SelectProps extends InputHTMLAttributes<HTMLSelectElement> {
   label?: string;
@@ -86,14 +106,28 @@ interface SelectProps extends InputHTMLAttributes<HTMLSelectElement> {
 }
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
-  ({ label, error, helperText, options, className = '', id: providedId, ...props }, ref) => {
+  (
+    {
+      label,
+      error,
+      helperText,
+      options,
+      className = "",
+      id: providedId,
+      ...props
+    },
+    ref,
+  ) => {
     const generatedId = useId();
     const id = providedId || generatedId;
 
     return (
       <div className="w-full">
         {label && (
-          <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-1">
+          <label
+            htmlFor={id}
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
             {label}
             {props.required && <span className="text-red-500 ml-1">*</span>}
           </label>
@@ -102,7 +136,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           ref={ref}
           id={id}
           className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 transition ${
-            error ? 'border-red-500 focus:ring-red-500' : 'border-gray-300'
+            error ? "border-red-500 focus:ring-red-500" : "border-gray-300"
           } ${className}`}
           {...props}
         >
@@ -118,7 +152,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
-Select.displayName = 'Select';
+Select.displayName = "Select";
